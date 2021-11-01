@@ -9,7 +9,8 @@ const { MONGO_URI } = require("./config/key");
 const Image = require("./models/file");
 
 const multer = require("multer");
-const path = require("path");
+
+
 const UPLOAD_PATH = path.resolve(__dirname, "path/to/uploadedFiles");
 const fileRoutes = require('./routes/file-upload-routes');
 const upload = multer({
@@ -64,12 +65,17 @@ app.use("/auth", require("./routes/authroute"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api", fileRoutes.routes);
-
-if(process.env.NODE_ENV === "production"){
-  app.use(express.static('client/build/index.html'));
-}
+const path = require("path");
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
+// if(process.env.NODE_ENV === "production"){
+//   app.use(express.static('client/build/index.html'));
+// }
 //===========PORT SETTING============//
 
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port port ${port}`));
+app.listen(PORT, () => console.log(`Server running on port port ${PORT}`));
