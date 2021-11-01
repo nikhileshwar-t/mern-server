@@ -5,14 +5,15 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
     "server": "node server.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+   
+
   
   },
+  "engines": {
+    "node": "10.16.0"
+},
   "author": "spandan joshi",
   "license": "MIT",
   "dependencies": {
