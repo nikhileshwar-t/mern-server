@@ -66,7 +66,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api", fileRoutes.routes);
 
 if(process.env.NODE_ENV === "production"){
-  app.use(express.static('client/build'));
+  app.use(express.static('client/build/index.html'));
 }
 //===========PORT SETTING============//
 
