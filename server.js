@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const { MONGO_URI } = require("./config/key");
 
 const Image = require("./models/file");
-
+const path = require("path");
 const multer = require("multer");
 
 
@@ -65,7 +65,7 @@ app.use("/auth", require("./routes/authroute"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api", fileRoutes.routes);
-const path = require("path");
+
 app.use(express.static(path.join(__dirname, '../build')))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build'))
