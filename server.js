@@ -2,6 +2,7 @@ const express = require("express"),
   http = require("http");
 
 require("dotenv").config();
+
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { MONGO_URI } = require("./config/key");
@@ -22,7 +23,7 @@ const app = express();
 
 //============= MONGOOSE SETTING ==============//
 mongoose
-  .connect(process.env.MONGODB_URI || MONGO_URI, {
+  .connect( MONGO_URI, {
     useCreateIndex: true,
     useUnifiedTopology: true,
     useNewUrlParser: true,
