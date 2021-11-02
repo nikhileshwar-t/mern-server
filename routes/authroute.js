@@ -6,6 +6,10 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {JWT_SECRET} = require('../config/key')
 const requireLogin = require('../middleware/requireLogin')
+var cors = require('cors')
+var app = express()
+
+app.use(cors())
 
 
 router.get('/users',(req, res) => {
