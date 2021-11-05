@@ -20,6 +20,7 @@ const upload = multer({
 });
 
 const app = express();
+app.use(cors());
 
 //============= MONGOOSE SETTING ==============//
 mongoose
@@ -36,7 +37,7 @@ require("./models/usermodel");
 //==========ROUTING========//
 app.use(express.json());
 
-app.use(cors());
+
 
 app.get("/", (req, res) => {
   res.send("Server working 🔥");
